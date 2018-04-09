@@ -61,10 +61,11 @@
         android:id="@+id/tvTipResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:text="$ 0.00"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tvTip"
         app:layout_constraintTop_toBottomOf="@+id/seekBarTip" />
 
     <TextView
@@ -81,7 +82,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="16dp"
         android:text="@string/totalAmount"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,10 +92,11 @@
         android:id="@+id/tv_totalAmount"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="$ 0.00"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/tvTipResult" />
 
 </android.support.constraint.ConstraintLayout>
