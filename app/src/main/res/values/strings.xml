@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="enterAmt">Enter Total Bill</string>
+    <string name="tipAmt">Amount Tip</string>
+    <string name="tip">Tip :-</string>
+    <string name="tipPercent">0%</string>
+    <string name="totalAmount">Total Amount :-</string>
+</resources>
