@@ -101,35 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-//        while (true) {
-//            ActivityManager activityManager = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
-//            for(ActivityManager.RunningAppProcessInfo appProcessInfo : activityManager.getRunningAppProcesses()) {
-//                try {
-//                    Thread.sleep(5000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-////                Log.i(TAG, "onCreate: "+appProcessInfo.pkgList[0]);
-//                Log.i(TAG, "onCreate: "+appProcessInfo);
-//            }
-//        }
-
-//            @SuppressLint("WrongConstant") UsageStatsManager usm = (UsageStatsManager) getSystemService("usagestats");
-//            long time = System.currentTimeMillis();
-//            List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
-//                    time - 100000 * 100000, time);
-//            if (appList != null && appList.size() > 0) {
-//                SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
-//                for (UsageStats usageStats : appList) {
-//                    mySortedMap.put(usageStats.getLastTimeUsed(),
-//                            usageStats);
-//
-//                    Log.i(TAG, "onCreate: "+usageStats);
-//                }
-//
-//            }
-
         while (true) {
             final int PROCESS_STATE_TOP = 2;
             ActivityManager.RunningAppProcessInfo currentInfo = null;
