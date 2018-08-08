@@ -88,36 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        while (true) {
-            final int PROCESS_STATE_TOP = 2;
-            ActivityManager.RunningAppProcessInfo currentInfo = null;
-            Field field = null;
-            try {
-                field = ActivityManager.RunningAppProcessInfo.class.getDeclaredField("processState");
-            } catch (Exception ignored) {
-            }
-            ActivityManager am = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.RunningAppProcessInfo> appList = am.getRunningAppProcesses();
-            Log.i(TAG, "onCreate: " + appList.size());
-            for (ActivityManager.RunningAppProcessInfo app : appList) {
-                if (app.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
-                        && app.importanceReasonCode == ActivityManager.RunningAppProcessInfo.REASON_UNKNOWN) {
-                    Integer state = null;
-                    try {
-                        state = field.getInt(app);
-                    } catch (Exception e) {
-                    }
-                    if (state != null && state == PROCESS_STATE_TOP) {
-                        currentInfo = app;
-                        Log.i(TAG, "onCreate: " + currentInfo.pkgList);
-                        break;
-                    }
-                }
-            }
-        }
-
-
-
     }
 
 
