@@ -1,6 +1,13 @@
 package com.aaavs.myapplication;
 
 
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import static android.app.ActivityManager.*;
 
 public class MainActivity extends AppCompatActivity {
     EditText editTextTotalBill;
@@ -26,6 +40,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         seekBarTip = findViewById(R.id.seekBarTip);
+
+
+//        String packageName =  ProcessManager.getRunningForegroundApps(getApplicationContext()).get(0).getPackageName();
+
+
+
+//
+//        ActivityManager activityManager = (ActivityManager) this.getSystemService( ACTIVITY_SERVICE );
+//        List<AppTask> procInfos = activityManager.getAppTasks();
+//
+//        Log.i(TAG, "onCreate: "+procInfos);
+
+
 
 
 
@@ -73,6 +100,64 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+//        while (true) {
+//            ActivityManager activityManager = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+//            for(ActivityManager.RunningAppProcessInfo appProcessInfo : activityManager.getRunningAppProcesses()) {
+//                try {
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+////                Log.i(TAG, "onCreate: "+appProcessInfo.pkgList[0]);
+//                Log.i(TAG, "onCreate: "+appProcessInfo);
+//            }
+//        }
+
+//            @SuppressLint("WrongConstant") UsageStatsManager usm = (UsageStatsManager) getSystemService("usagestats");
+//            long time = System.currentTimeMillis();
+//            List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,
+//                    time - 100000 * 100000, time);
+//            if (appList != null && appList.size() > 0) {
+//                SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
+//                for (UsageStats usageStats : appList) {
+//                    mySortedMap.put(usageStats.getLastTimeUsed(),
+//                            usageStats);
+//
+//                    Log.i(TAG, "onCreate: "+usageStats);
+//                }
+//
+//            }
+
+        while (true) {
+            final int PROCESS_STATE_TOP = 2;
+            ActivityManager.RunningAppProcessInfo currentInfo = null;
+            Field field = null;
+            try {
+                field = ActivityManager.RunningAppProcessInfo.class.getDeclaredField("processState");
+            } catch (Exception ignored) {
+            }
+            ActivityManager am = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> appList = am.getRunningAppProcesses();
+            Log.i(TAG, "onCreate: " + appList.size());
+            for (ActivityManager.RunningAppProcessInfo app : appList) {
+                if (app.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+                        && app.importanceReasonCode == ActivityManager.RunningAppProcessInfo.REASON_UNKNOWN) {
+                    Integer state = null;
+                    try {
+                        state = field.getInt(app);
+                    } catch (Exception e) {
+                    }
+                    if (state != null && state == PROCESS_STATE_TOP) {
+                        currentInfo = app;
+                        Log.i(TAG, "onCreate: " + currentInfo.pkgList);
+                        break;
+                    }
+                }
+            }
+        }
+
 
 
     }

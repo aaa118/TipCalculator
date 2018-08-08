@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.aaavs.myapplication"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 4
         versionName "1.3"
