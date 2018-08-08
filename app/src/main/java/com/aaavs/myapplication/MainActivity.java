@@ -42,19 +42,6 @@ public class MainActivity extends AppCompatActivity {
         seekBarTip = findViewById(R.id.seekBarTip);
 
 
-//        String packageName =  ProcessManager.getRunningForegroundApps(getApplicationContext()).get(0).getPackageName();
-
-
-
-//
-//        ActivityManager activityManager = (ActivityManager) this.getSystemService( ACTIVITY_SERVICE );
-//        List<AppTask> procInfos = activityManager.getAppTasks();
-//
-//        Log.i(TAG, "onCreate: "+procInfos);
-
-
-
-
 
         editTextTotalBill = findViewById(R.id.etTotalBill);
         editTextTotalBill.addTextChangedListener(new TextWatcher() {
